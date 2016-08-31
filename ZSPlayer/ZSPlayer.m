@@ -29,6 +29,9 @@
 @property(nonatomic,strong)UISlider *progress;
 //已下载的进度
 @property(nonatomic,strong)UISlider *playableProgress;
+//拖动进度时显示的时间
+@property(nonatomic,strong)UIImageView *timeimg;
+@property(nonatomic,strong)UILabel *timelab;
 @end
 @implementation ZSPlayer
 
@@ -61,25 +64,110 @@
     self.coverView = coverView;
     [self addSubview:coverView];
     
-    UIButton *fullbtn = [[UIButton alloc]initWithFrame:CGRectMake(myW - 60, myH - 40, 50, 30)];
+    UIButton *fullbtn = [[UIButton alloc]initWithFrame:CGRectMake(myW - 40, myH - 30, 30, 30)];
     [fullbtn setTitle:@"全屏" forState:UIControlStateNormal];
+    fullbtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [fullbtn addTarget:self action:@selector(fullClick) forControlEvents:UIControlEventTouchUpInside];
     self.fullbtn = fullbtn;
     [self.coverView addSubview:fullbtn];
     
-    self.playbtn = [[UIButton alloc]initWithFrame:CGRectMake(10, myH - 40, 50, 30)];
+    self.playbtn = [[UIButton alloc]initWithFrame:CGRectMake(10, myH - 30, 30, 30)];
     [_playbtn setTitle:@"暂停" forState:UIControlStateNormal];
+    _playbtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [_playbtn addTarget:self action:@selector(playorpauseBtnclick) forControlEvents:UIControlEventTouchUpInside];
     [self.coverView addSubview:_playbtn];
     
-    self.timedurtion = [[UILabel alloc]initWithFrame:CGRectMake(myW - 140, myH - 40, 80, 30)];
+    self.timedurtion = [[UILabel alloc]initWithFrame:CGRectMake(myW - 80, myH - 30, 40, 30)];
+    self.timedurtion.font = [UIFont systemFontOfSize:12];
     self.timedurtion.textColor = [UIColor whiteColor];
+    self.timedurtion.text = @"00:00";
     [self.coverView addSubview:_timedurtion];
-    
-    self.currenttime = [[UILabel alloc]initWithFrame:CGRectMake(myW - 200, myH - 40, 60, 30)];
+    self.currenttime.textAlignment = NSTextAlignmentRight;
+    self.currenttime = [[UILabel alloc]initWithFrame:CGRectMake(40, myH - 30, 40, 30)];
+    self.currenttime.font = [UIFont systemFontOfSize:12];
+    self.currenttime.text = @"00:00";
     self.currenttime.textColor = [UIColor whiteColor];
     [self.coverView addSubview:_currenttime];
+    
+    self.playableProgress = [[UISlider alloc]initWithFrame:CGRectMake(90, myH - 30, myW - 180, 30)];
+    //  滑块左侧颜色
+    self.playableProgress.minimumTrackTintColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
+    //  滑块右侧颜色
+    self.playableProgress.maximumTrackTintColor = [UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:0.5];
+    UIImage *thumbImageEmp = [[UIImage alloc]init];
+    [self.playableProgress setThumbImage:thumbImageEmp forState:UIControlStateNormal];
+    [self.playableProgress setThumbImage:thumbImageEmp forState:UIControlStateSelected];
+    self.playableProgress.userInteractionEnabled = NO;
+    [self.coverView addSubview:self.playableProgress];
 
+    self.progress =[[UISlider alloc]initWithFrame:CGRectMake(90, myH - 30, myW - 180, 30)];
+    //  滑块左侧颜色
+    self.progress.minimumTrackTintColor = [UIColor whiteColor];
+    //  滑块右侧颜色
+    self.progress.maximumTrackTintColor = [UIColor clearColor];
+    UIImage *thumbImage0 = [UIImage imageNamed:@"Oval 1"];
+    [self.progress setThumbImage:thumbImage0 forState:UIControlStateNormal];
+    [self.progress setThumbImage:thumbImage0 forState:UIControlStateSelected];
+    [self.progress addTarget:self action:@selector(valueChange:other:) forControlEvents:UIControlEventValueChanged];
+//    [self.progress addTapGestureWithTarget:self action:@selector(resetSlider)];
+    [self.coverView addSubview:self.progress];
+    
+    //  timeImage
+    self.timeimg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"silder"]];
+    self.timeimg.frame = CGRectMake(0, 0, 30, 12);
+    self.timeimg.hidden = YES;
+    [self.coverView addSubview:self.timeimg];
+    
+    self.timelab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 12)];
+    self.timelab.font = [UIFont systemFontOfSize:8];
+    self.timelab.textAlignment = NSTextAlignmentCenter;
+    [self.timeimg addSubview:self.timelab];
+
+
+}
+
+-(void)playButtonDisappear{
+}
+
+//拖动控件
+- (void)valueChange:(UISlider *)progress other:(UIEvent *)event {
+    NSTimeInterval currenttime;
+    NSInteger minit;
+    NSInteger second;
+    UITouch *touch = [[event allTouches] anyObject];
+    switch (touch.phase) {
+        case UITouchPhaseBegan:
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(playButtonDisappear) object:nil];
+            [self.timer invalidate];
+            break;
+        case UITouchPhaseMoved:
+            currenttime = self.progress.value * self.movieplayer.duration;
+            minit = currenttime / 60;
+            second = currenttime - 60 * minit;
+            self.currenttime.text = [NSString stringWithFormat:@"%02ld:%02ld", (long)minit, (long)second];
+            self.timeimg.hidden = NO;
+            self.timeimg.center = CGPointMake((myW - 190)* self.progress.value + 96, self.progress.frame.origin.y - 15) ;
+            self.timelab.text = self.currenttime.text;
+            break;
+        case UITouchPhaseEnded:
+            self.timeimg.hidden = YES;
+            self.movieplayer.currentPlaybackTime = self.progress.value * self.movieplayer.duration;
+//            if (self.movieplayer.currentPlaybackRate == 0) {
+//                [self tapAction];
+//            }
+            [self performSelector:@selector(playButtonDisappear) withObject:self afterDelay:3];
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refreshCurrentTime) userInfo:nil repeats:YES];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)tapAction {
+}
+
+//  更新进度条位置并播放
+- (void)resetSlider {
 }
 
 //播放暂停
@@ -113,6 +201,10 @@
         self.coverView.frame = self.bounds;
         self.isfull = NO;
     }
+    self.timedurtion.frame = CGRectMake(myW - 80, myH - 30, 40, 30);
+    self.currenttime.frame = CGRectMake(40, myH - 30, 40, 30);
+    self.progress.frame = CGRectMake(90, myH - 23, myW - 180, 15);
+    self.playableProgress.frame = CGRectMake(90, myH - 23, myW - 180, 15);
     self.fullbtn.frame = CGRectMake(myW - 60, myH - 40, 50, 30);
     self.playbtn.frame = CGRectMake(10, myH - 40, 50, 30);
     [self.coverView layoutSubviews];
@@ -126,6 +218,7 @@
     [notificationCenter addObserver:self selector:@selector(mediaPlayerPlaybackFinished) name:MPMoviePlayerPlaybackDidFinishNotification object:self.movieplayer];
 }
 
+//获取总时长
 - (void)DurationAvailable {
     NSInteger minit = self.movieplayer.duration / 60;
     NSInteger second = self.movieplayer.duration - 60 * minit;
@@ -133,6 +226,7 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refreshCurrentTime) userInfo:nil repeats:YES];
 }
 
+//获取当前时间及下载播放进度
 - (void)refreshCurrentTime {
     NSInteger minit = self.movieplayer.currentPlaybackTime / 60;
     NSInteger second = self.movieplayer.currentPlaybackTime - 60 * minit;
@@ -141,7 +235,9 @@
     self.playableProgress.value = self.movieplayer.playableDuration / self.movieplayer.duration;
 }
 
-
+-(void)mediaPlayerPlaybackFinished{
+    [self.timer invalidate];
+}
 
 //响应超出控件的按钮点击事件
 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{

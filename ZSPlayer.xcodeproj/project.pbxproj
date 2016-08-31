@@ -311,6 +311,7 @@
 				EAE83EB71D76BC4000FDC739 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
