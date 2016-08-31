@@ -1,0 +1,318 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EAE83EA31D76BC4000FDC739 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE83EA21D76BC4000FDC739 /* main.m */; };
+		EAE83EA61D76BC4000FDC739 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE83EA51D76BC4000FDC739 /* AppDelegate.m */; };
+		EAE83EA91D76BC4000FDC739 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE83EA81D76BC4000FDC739 /* ViewController.m */; };
+		EAE83EAC1D76BC4000FDC739 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAE83EAA1D76BC4000FDC739 /* Main.storyboard */; };
+		EAE83EAE1D76BC4000FDC739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAE83EAD1D76BC4000FDC739 /* Assets.xcassets */; };
+		EAE83EB11D76BC4000FDC739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAE83EAF1D76BC4000FDC739 /* LaunchScreen.storyboard */; };
+		EAE83EBA1D76BC4D00FDC739 /* ZSPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE83EB91D76BC4D00FDC739 /* ZSPlayer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EAE83E9E1D76BC4000FDC739 /* ZSPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZSPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE83EA21D76BC4000FDC739 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EAE83EA41D76BC4000FDC739 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EAE83EA51D76BC4000FDC739 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EAE83EA71D76BC4000FDC739 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EAE83EA81D76BC4000FDC739 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EAE83EAB1D76BC4000FDC739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EAE83EAD1D76BC4000FDC739 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAE83EB01D76BC4000FDC739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EAE83EB21D76BC4000FDC739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAE83EB81D76BC4D00FDC739 /* ZSPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPlayer.h; sourceTree = "<group>"; };
+		EAE83EB91D76BC4D00FDC739 /* ZSPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPlayer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EAE83E9B1D76BC4000FDC739 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EAE83E951D76BC4000FDC739 = {
+			isa = PBXGroup;
+			children = (
+				EAE83EA01D76BC4000FDC739 /* ZSPlayer */,
+				EAE83E9F1D76BC4000FDC739 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EAE83E9F1D76BC4000FDC739 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAE83E9E1D76BC4000FDC739 /* ZSPlayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAE83EA01D76BC4000FDC739 /* ZSPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EAE83EA41D76BC4000FDC739 /* AppDelegate.h */,
+				EAE83EA51D76BC4000FDC739 /* AppDelegate.m */,
+				EAE83EA71D76BC4000FDC739 /* ViewController.h */,
+				EAE83EA81D76BC4000FDC739 /* ViewController.m */,
+				EAE83EB81D76BC4D00FDC739 /* ZSPlayer.h */,
+				EAE83EB91D76BC4D00FDC739 /* ZSPlayer.m */,
+				EAE83EAA1D76BC4000FDC739 /* Main.storyboard */,
+				EAE83EAD1D76BC4000FDC739 /* Assets.xcassets */,
+				EAE83EAF1D76BC4000FDC739 /* LaunchScreen.storyboard */,
+				EAE83EB21D76BC4000FDC739 /* Info.plist */,
+				EAE83EA11D76BC4000FDC739 /* Supporting Files */,
+			);
+			path = ZSPlayer;
+			sourceTree = "<group>";
+		};
+		EAE83EA11D76BC4000FDC739 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EAE83EA21D76BC4000FDC739 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EAE83E9D1D76BC4000FDC739 /* ZSPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAE83EB51D76BC4000FDC739 /* Build configuration list for PBXNativeTarget "ZSPlayer" */;
+			buildPhases = (
+				EAE83E9A1D76BC4000FDC739 /* Sources */,
+				EAE83E9B1D76BC4000FDC739 /* Frameworks */,
+				EAE83E9C1D76BC4000FDC739 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZSPlayer;
+			productName = ZSPlayer;
+			productReference = EAE83E9E1D76BC4000FDC739 /* ZSPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EAE83E961D76BC4000FDC739 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Tony;
+				TargetAttributes = {
+					EAE83E9D1D76BC4000FDC739 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 3LVRZF468V;
+					};
+				};
+			};
+			buildConfigurationList = EAE83E991D76BC4000FDC739 /* Build configuration list for PBXProject "ZSPlayer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EAE83E951D76BC4000FDC739;
+			productRefGroup = EAE83E9F1D76BC4000FDC739 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EAE83E9D1D76BC4000FDC739 /* ZSPlayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EAE83E9C1D76BC4000FDC739 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAE83EB11D76BC4000FDC739 /* LaunchScreen.storyboard in Resources */,
+				EAE83EAE1D76BC4000FDC739 /* Assets.xcassets in Resources */,
+				EAE83EAC1D76BC4000FDC739 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EAE83E9A1D76BC4000FDC739 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAE83EA91D76BC4000FDC739 /* ViewController.m in Sources */,
+				EAE83EA61D76BC4000FDC739 /* AppDelegate.m in Sources */,
+				EAE83EA31D76BC4000FDC739 /* main.m in Sources */,
+				EAE83EBA1D76BC4D00FDC739 /* ZSPlayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EAE83EAA1D76BC4000FDC739 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAE83EAB1D76BC4000FDC739 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EAE83EAF1D76BC4000FDC739 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAE83EB01D76BC4000FDC739 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EAE83EB31D76BC4000FDC739 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EAE83EB41D76BC4000FDC739 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EAE83EB61D76BC4000FDC739 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZSPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = stark.ZSPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EAE83EB71D76BC4000FDC739 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZSPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = stark.ZSPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAE83E991D76BC4000FDC739 /* Build configuration list for PBXProject "ZSPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAE83EB31D76BC4000FDC739 /* Debug */,
+				EAE83EB41D76BC4000FDC739 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAE83EB51D76BC4000FDC739 /* Build configuration list for PBXNativeTarget "ZSPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAE83EB61D76BC4000FDC739 /* Debug */,
+				EAE83EB71D76BC4000FDC739 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EAE83E961D76BC4000FDC739 /* Project object */;
+}

@@ -1,0 +1,34 @@
+//
+//  ViewController.m
+//  ZSPlayer
+//
+//  Created by Tony on 16/8/31.
+//  Copyright © 2016年 Tony. All rights reserved.
+//
+
+#import "ViewController.h"
+#import "ZSPlayer.h"
+
+//获取到window
+#define Window [[UIApplication sharedApplication].delegate window]
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    ZSPlayer *play = [[ZSPlayer alloc]initWithFrame:CGRectMake(0, 0, 375, 180)];
+    [self.view addSubview:play];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end
