@@ -205,8 +205,8 @@
     self.currenttime.frame = CGRectMake(40, myH - 30, 40, 30);
     self.progress.frame = CGRectMake(90, myH - 23, myW - 180, 15);
     self.playableProgress.frame = CGRectMake(90, myH - 23, myW - 180, 15);
-    self.fullbtn.frame = CGRectMake(myW - 60, myH - 40, 50, 30);
-    self.playbtn.frame = CGRectMake(10, myH - 40, 50, 30);
+    self.fullbtn.frame = CGRectMake(myW - 40, myH - 30, 30, 30);
+    self.playbtn.frame = CGRectMake(10, myH - 30, 30, 30);
     [self.coverView layoutSubviews];
     [self layoutSubviews];
 }
