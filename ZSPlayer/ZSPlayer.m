@@ -17,8 +17,6 @@
 @property(nonatomic,assign)BOOL isfull;
 //全屏按钮
 @property(nonatomic,strong)UIButton *fullbtn;
-//播放暂停按钮
-@property(nonatomic,strong)UIButton *playbtn;
 //播放时长
 @property(nonatomic,strong)UILabel *timedurtion;
 //当前播放时间
@@ -32,6 +30,9 @@
 //拖动进度时显示的时间
 @property(nonatomic,strong)UIImageView *timeimg;
 @property(nonatomic,strong)UILabel *timelab;
+//控件的隐现
+@property(nonatomic,assign)BOOL btnshow;
+@property(nonatomic,assign)BOOL isshow;
 @end
 @implementation ZSPlayer
 
@@ -42,12 +43,29 @@
         [self setupUI];
         [self addNotification];
     }
+    self.btnshow = YES;
+    self.isshow = YES;
+    //添加手势
+    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playButtonDisappear)];
+    [self addGestureRecognizer:tapgesture];
     return self;
+}
+
+-(void)setPlayurl:(NSURL *)playurl{
+    _playurl = playurl;
+    self.movieplayer.contentURL = playurl;
+}
+
+//手势点击事件
+-(void)gestureClick{
+    if (self.btnshow) {
+        
+    }
 }
 
 //添加播放器
 -(void)createMoviePlayer{
-    self.movieplayer = [[MPMoviePlayerController alloc]initWithContentURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8"]];
+    self.movieplayer = [[MPMoviePlayerController alloc]initWithContentURL:[NSURL URLWithString:@""]];
     self.movieplayer.view.frame = self.bounds;
     self.movieplayer.controlStyle = MPMovieControlStyleNone;
     self.movieplayer.scalingMode = MPMovieScalingModeFill;
@@ -90,9 +108,7 @@
     [self.coverView addSubview:_currenttime];
     
     self.playableProgress = [[UISlider alloc]initWithFrame:CGRectMake(90, myH - 30, myW - 180, 30)];
-    //  滑块左侧颜色
     self.playableProgress.minimumTrackTintColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
-    //  滑块右侧颜色
     self.playableProgress.maximumTrackTintColor = [UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:0.5];
     UIImage *thumbImageEmp = [[UIImage alloc]init];
     [self.playableProgress setThumbImage:thumbImageEmp forState:UIControlStateNormal];
@@ -101,15 +117,12 @@
     [self.coverView addSubview:self.playableProgress];
 
     self.progress =[[UISlider alloc]initWithFrame:CGRectMake(90, myH - 30, myW - 180, 30)];
-    //  滑块左侧颜色
     self.progress.minimumTrackTintColor = [UIColor whiteColor];
-    //  滑块右侧颜色
     self.progress.maximumTrackTintColor = [UIColor clearColor];
     UIImage *thumbImage0 = [UIImage imageNamed:@"Oval 1"];
     [self.progress setThumbImage:thumbImage0 forState:UIControlStateNormal];
     [self.progress setThumbImage:thumbImage0 forState:UIControlStateSelected];
     [self.progress addTarget:self action:@selector(valueChange:other:) forControlEvents:UIControlEventValueChanged];
-//    [self.progress addTapGestureWithTarget:self action:@selector(resetSlider)];
     [self.coverView addSubview:self.progress];
     
     //  timeImage
@@ -126,7 +139,19 @@
 
 }
 
+//控件隐藏与显示
 -(void)playButtonDisappear{
+    if (self.btnshow) {
+        [UIView animateWithDuration:3.0f animations:^{
+            self.coverView.alpha = 0;
+            self.btnshow = NO;
+            self.isshow = NO;
+        }];
+    }else{
+            self.coverView.alpha = 1;
+            self.btnshow = YES;
+            self.isshow = YES;
+    }
 }
 
 //拖动控件
@@ -137,7 +162,7 @@
     UITouch *touch = [[event allTouches] anyObject];
     switch (touch.phase) {
         case UITouchPhaseBegan:
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(playButtonDisappear) object:nil];
+            self.isshow = NO;
             [self.timer invalidate];
             break;
         case UITouchPhaseMoved:
@@ -152,22 +177,12 @@
         case UITouchPhaseEnded:
             self.timeimg.hidden = YES;
             self.movieplayer.currentPlaybackTime = self.progress.value * self.movieplayer.duration;
-//            if (self.movieplayer.currentPlaybackRate == 0) {
-//                [self tapAction];
-//            }
-            [self performSelector:@selector(playButtonDisappear) withObject:self afterDelay:3];
+            self.isshow = YES;
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refreshCurrentTime) userInfo:nil repeats:YES];
             break;
         default:
             break;
     }
-}
-
--(void)tapAction {
-}
-
-//  更新进度条位置并播放
-- (void)resetSlider {
 }
 
 //播放暂停
@@ -177,7 +192,7 @@
         [_playbtn setTitle:@"播放" forState:UIControlStateNormal];
         return;
     }
-    if (_movieplayer.playbackState == MPMoviePlaybackStatePaused) {
+    if (_movieplayer.playbackState == MPMoviePlaybackStatePaused || _movieplayer.playbackState == MPMoviePlaybackStateStopped) {
         [_movieplayer play];
         [_playbtn setTitle:@"暂停" forState:UIControlStateNormal];
         return;
@@ -233,10 +248,19 @@
     self.currenttime.text = [NSString stringWithFormat:@"%02ld:%02ld", (long)minit, (long)second];
     self.progress.value = self.movieplayer.currentPlaybackTime / self.movieplayer.duration;
     self.playableProgress.value = self.movieplayer.playableDuration / self.movieplayer.duration;
+    
+    if (self.btnshow && self.isshow) {
+        [self performSelector:@selector(playButtonDisappear) withObject:self afterDelay:5];
+        self.isshow = NO;
+    }
 }
 
+//播放完
 -(void)mediaPlayerPlaybackFinished{
     [self.timer invalidate];
+    if (self.finishBlock) {
+        self.finishBlock();
+    }
 }
 
 //响应超出控件的按钮点击事件
@@ -244,8 +268,12 @@
     UIView *view = [super hitTest:point withEvent:event];
     if (view == nil) {
         CGPoint tempoint = [self.fullbtn convertPoint:point fromView:self];
+        CGPoint sliderpoint = [self.progress convertPoint:point fromView:self];
         if (CGRectContainsPoint(self.fullbtn.bounds, tempoint)) {
             view = self.fullbtn;
+        }
+        if (CGRectContainsPoint(self.progress.bounds, sliderpoint)) {
+            view = self.progress;
         }
     }
     return view;
