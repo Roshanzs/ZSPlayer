@@ -31,8 +31,8 @@
 @property(nonatomic,strong)UIImageView *timeimg;
 @property(nonatomic,strong)UILabel *timelab;
 //控件的隐现
-@property(nonatomic,assign)BOOL btnshow;
-@property(nonatomic,assign)BOOL isshow;
+//@property(nonatomic,assign)BOOL btnshow;
+//@property(nonatomic,assign)BOOL isshow;
 @end
 @implementation ZSPlayer
 
@@ -43,11 +43,9 @@
         [self setupUI];
         [self addNotification];
     }
-    self.btnshow = YES;
-    self.isshow = YES;
     //添加手势
-    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playButtonDisappear)];
-    [self addGestureRecognizer:tapgesture];
+//    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playButtonDisappear)];
+//    [self addGestureRecognizer:tapgesture];
     return self;
 }
 
@@ -56,12 +54,6 @@
     self.movieplayer.contentURL = playurl;
 }
 
-//手势点击事件
--(void)gestureClick{
-    if (self.btnshow) {
-        
-    }
-}
 
 //添加播放器
 -(void)createMoviePlayer{
@@ -139,20 +131,6 @@
 
 }
 
-//控件隐藏与显示
--(void)playButtonDisappear{
-    if (self.btnshow) {
-        [UIView animateWithDuration:3.0f animations:^{
-            self.coverView.alpha = 0;
-            self.btnshow = NO;
-            self.isshow = NO;
-        }];
-    }else{
-            self.coverView.alpha = 1;
-            self.btnshow = YES;
-            self.isshow = YES;
-    }
-}
 
 //拖动控件
 - (void)valueChange:(UISlider *)progress other:(UIEvent *)event {
@@ -162,7 +140,6 @@
     UITouch *touch = [[event allTouches] anyObject];
     switch (touch.phase) {
         case UITouchPhaseBegan:
-            self.isshow = NO;
             [self.timer invalidate];
             break;
         case UITouchPhaseMoved:
@@ -177,7 +154,6 @@
         case UITouchPhaseEnded:
             self.timeimg.hidden = YES;
             self.movieplayer.currentPlaybackTime = self.progress.value * self.movieplayer.duration;
-            self.isshow = YES;
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refreshCurrentTime) userInfo:nil repeats:YES];
             break;
         default:
@@ -249,10 +225,6 @@
     self.progress.value = self.movieplayer.currentPlaybackTime / self.movieplayer.duration;
     self.playableProgress.value = self.movieplayer.playableDuration / self.movieplayer.duration;
     
-    if (self.btnshow && self.isshow) {
-        [self performSelector:@selector(playButtonDisappear) withObject:self afterDelay:5];
-        self.isshow = NO;
-    }
 }
 
 //播放完
