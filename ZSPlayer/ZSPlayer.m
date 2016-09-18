@@ -26,7 +26,7 @@
 //播放的进度
 @property(nonatomic,strong)UISlider *progress;
 //已下载的进度
-@property(nonatomic,strong)UISlider *playableProgress;
+@property(nonatomic,strong)UISlider *playableProgress; 
 //拖动进度时显示的时间
 @property(nonatomic,strong)UIImageView *timeimg;
 @property(nonatomic,strong)UILabel *timelab;
@@ -43,9 +43,8 @@
         [self setupUI];
         [self addNotification];
     }
-    //添加手势
-//    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playButtonDisappear)];
-//    [self addGestureRecognizer:tapgesture];
+    NSURLCache *urlcache = [[NSURLCache alloc]initWithMemoryCapacity:4*1024*1024 diskCapacity:20*1024*1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:urlcache];
     return self;
 }
 
@@ -128,7 +127,6 @@
     self.timelab.textAlignment = NSTextAlignmentCenter;
     [self.timeimg addSubview:self.timelab];
 
-
 }
 
 
@@ -178,6 +176,13 @@
 //全屏
 -(void)fullClick{
     NSLog(@"全屏");
+//    if ([UIDevice currentDevice].orientation != UIDeviceOrientationPortrait) {
+//        NSNumber *num = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+//        [[UIDevice currentDevice] setValue:num forKey:@"orientation"];
+//    }else{
+//        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+//        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+//    }
     if (!self.isfull) {
         self.movieplayer.view.transform = CGAffineTransformRotate(self.movieplayer.view.transform, M_PI_2);
         self.coverView.transform =  CGAffineTransformRotate(self.coverView.transform, M_PI_2);
@@ -251,7 +256,9 @@
     return view;
 }
 
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 @end
